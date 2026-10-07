@@ -2,13 +2,13 @@
 
 [English (United States)](README.en-US.md) · [Apoio voluntário](SUPPORT.md)
 
-## Revisão 1.1.0
+## Segurança e compatibilidade
 
 Valores entre aspas com espaços, cookies, referências compartilhadas e proteção contra getters/protótipos.
 
 Mascara por chave sensível e alguns padrões conhecidos de valores. Inclui cookies e campos CPF/CNPJ. JSON válido é reserializado; Map/Set viram arrays, datas viram ISO, getters não são executados e ciclos viram `[circular]`. É heurístico: não anonimiza todos os dados pessoais e não detecta todo segredo solto. Prefira logs com lista explícita de campos permitidos. Não transforme uma entrada arbitrária enorme em log: aplique limites na aplicação. BigInt exige serialização específica.
 
-Baixe pelo GitHub; não é necessário instalar um pacote homônimo do npm. Para consumir em outro projeto, use uma revisão Git fixada (tag v1.1.0) ou copie o módulo e preserve a licença. Os exemplos abaixo usam importação local após o clone. Node.js 22 ou superior para os testes.
+Baixe pelo GitHub; não é necessário instalar um pacote homônimo do npm. Para consumir em outro projeto, use uma revisão Git fixada (tag v1.2.0) ou copie o módulo e preserve a licença. Os exemplos abaixo usam importação local após o clone. Node.js 22 ou superior para os testes.
 
 Redige **segredos** de strings e objetos **antes de logar**. Sem dependência.
 
