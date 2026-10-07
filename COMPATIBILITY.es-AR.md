@@ -15,3 +15,14 @@ Revisión: 2026-10-07. ESM · MIT · Node.js >=22.
 Los paquetes opcionales pertenecen a adaptadores, no al núcleo obligatorio. Verificá versión fijada, licencia y soporte antes de integrar.
 
 [README](README.es-AR.md)
+
+## Indicadores condicionales
+
+Los badges usan SVG locales generados desde la API oficial de GitHub. Stars
+y Forks aparecen de forma independiente solo por encima de cero. Una release
+ausente o CI pendiente/fallido no genera badge; los resultados siguen en Actions.
+badges.yml actualiza tras CI, release, estrella/fork y cada seis horas, o a mano.
+La página abierta no cambia al instante: recargar tras el commit automático.
+GitHub puede demorar la agenda o desactivarla por inactividad; revisar Actions.
+Errores transitorios de API frenan la actualización y conservan el último bloque
+válido. El token temporal publica solo README y SVG, nunca datos privados.
