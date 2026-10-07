@@ -15,3 +15,14 @@ Review: 2026-10-07. ESM · MIT · Node.js >=22.
 Optional packages belong in adapters, not mandatory core dependencies. Verify the pinned version, license and support before integration.
 
 [README](README.en-US.md)
+
+## Conditional indicators
+
+README badges use local SVGs generated from the official GitHub API. Stars
+and Forks appear independently only above zero. Missing releases and pending
+or failed CI produce no badge; full results remain in Actions. badges.yml
+refreshes after CI, a release, star/fork and every six hours, or manually.
+An open page does not change instantly: reload after the automatic commit.
+GitHub may delay schedules or disable them after inactivity; check Actions.
+Transient API errors stop the update and preserve the last valid block.
+The temporary token publishes only README blocks and SVGs, never private data.

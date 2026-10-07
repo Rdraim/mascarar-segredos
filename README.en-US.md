@@ -6,6 +6,10 @@
 
 # mascarar-segredos
 
+<!-- public-badges:start -->
+[![license](assets/support/badge-license.svg)](LICENSE) [![CI](assets/support/badge-ci.svg)](https://github.com/Rdraim/mascarar-segredos/actions) [![release](assets/support/badge-release.svg)](https://github.com/Rdraim/mascarar-segredos/releases)
+<!-- public-badges:end -->
+
 Best-effort secret redaction for text, JSON and structured objects before logging.
 
 ## Start here

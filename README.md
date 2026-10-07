@@ -6,6 +6,10 @@
 
 # mascarar-segredos
 
+<!-- public-badges:start -->
+[![license](assets/support/badge-license.svg)](LICENSE) [![CI](assets/support/badge-ci.svg)](https://github.com/Rdraim/mascarar-segredos/actions) [![release](assets/support/badge-release.svg)](https://github.com/Rdraim/mascarar-segredos/releases)
+<!-- public-badges:end -->
+
 ## Segurança e compatibilidade
 
 Valores entre aspas com espaços, cookies, referências compartilhadas e proteção contra getters/protótipos.
