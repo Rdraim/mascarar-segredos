@@ -53,7 +53,7 @@ const log = (nivel, msg, dados) => console[nivel](msg, mascararObjeto(dados));
 
 - **Por chave** (valor vira `***`): `senha`, `password`, `pwd`, `secret`, `token`,
   `authorization`, `api_key`, `access_token`, `client_secret`, `cartao`, `cvv`,
-  `private_key`, `credential`… (ajuste em `CHAVES_SENSIVEIS`).
+  `private_key`, `credential`… (`CHAVES_SENSIVEIS` é uma lista imutável).
 - **Por valor**: `Bearer …`, tokens do GitHub (`ghp_…`, `github_pat_…`), chaves
   `sk-…`, AWS `AKIA…`, tokens do Slack `xox…`, **JWT**, e número de **cartão**
   (13–19 dígitos que passam no Luhn).
@@ -63,6 +63,16 @@ const log = (nivel, msg, dados) => console[nivel](msg, mascararObjeto(dados));
 > o seu domínio.
 
 ## Testes
+
+Exemplo executável: `node examples/uso.mjs`. A serialização também neutraliza
+funções `toJSON` da entrada, evitando executar código durante a redação.
+
+Credenciais em URLs (`protocolo://usuario:senha@host`), autenticação Basic e
+cabeçalhos completos Authorization/Cookie/Set-Cookie também são mascarados.
+Parâmetros seguros após um segredo na URL continuam disponíveis no diagnóstico.
+Não é anonimização universal: valores pessoais em campos não reconhecidos podem
+permanecer. Sempre minimize os dados coletados e teste seus formatos de log.
+
 
 ```bash
 npm test

@@ -6,6 +6,15 @@ Best-effort secret redaction for text, JSON and structured objects before loggin
 
 ## Start here
 
+Version 1.2.0 also redacts URL userinfo, Basic authentication and complete
+Authorization/Cookie/Set-Cookie header lines. Safe query parameters remain
+available for diagnostics. The exported sensitive-key list is immutable.
+This is not universal anonymization: personal data in unrecognized fields can
+remain. Minimize collected data and test your application's log formats.
+
+Run `node examples/uso.mjs` for synthetic examples. Input `toJSON` functions
+are neutralized rather than executed while redacting or serializing.
+
 Requires Git and Node.js 22+ for tests. No runtime dependencies. Download the actual repository rather than an unverified same-name npm package.
 
 ```sh
