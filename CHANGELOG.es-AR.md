@@ -6,6 +6,10 @@
 
 # 1.2.0 — 2026-10-07
 
+## 1.2.1 — 2026-10-07
+
+Identidad Rdraim, presentación gráfica, revisión de compatibilidad y control de historial más eficiente. API de ejecución conservada.
+
 La versión 1.2.0 también oculta credenciales en URL, autenticación Basic y líneas completas Authorization/Cookie/Set-Cookie. Conserva parámetros de consulta seguros para diagnóstico. La lista exportada de claves sensibles es inmutable. No es anonimización universal: pueden quedar datos personales en campos no reconocidos. Minimizá lo que recopilás y verificá los formatos reales de tus logs. Las funciones `toJSON` se neutralizan sin ejecutarlas al ocultar o serializar.
 
 # 1.1.0 — 2026-10-07

@@ -12,7 +12,7 @@ Valores entre aspas com espaços, cookies, referências compartilhadas e proteç
 
 Mascara por chave sensível e alguns padrões conhecidos de valores. Inclui cookies e campos CPF/CNPJ. JSON válido é reserializado; Map/Set viram arrays, datas viram ISO, getters não são executados e ciclos viram `[circular]`. É heurístico: não anonimiza todos os dados pessoais e não detecta todo segredo solto. Prefira logs com lista explícita de campos permitidos. Não transforme uma entrada arbitrária enorme em log: aplique limites na aplicação. BigInt exige serialização específica.
 
-Baixe pelo GitHub; não é necessário instalar um pacote homônimo do npm. Para consumir em outro projeto, use uma revisão Git fixada (tag v1.2.0) ou copie o módulo e preserve a licença. Os exemplos abaixo usam importação local após o clone. Node.js 22 ou superior para os testes.
+Baixe pelo GitHub; não é necessário instalar um pacote homônimo do npm. Para consumir em outro projeto, use uma revisão Git fixada (tag v1.2.1) ou copie o módulo e preserve a licença. Os exemplos abaixo usam importação local após o clone. Node.js 22 ou superior para os testes.
 
 Redige **segredos** de strings e objetos **antes de logar**. Sem dependência.
 
@@ -25,7 +25,7 @@ de token de API, JWT, número de cartão válido por Luhn).
 ## Instalação
 
 ```bash
-git clone https://github.com/techrodrigo21-ux/mascarar-segredos.git
+git clone https://github.com/Rdraim/mascarar-segredos.git
 cd mascarar-segredos
 npm test
 ```
@@ -108,7 +108,7 @@ Sou **Rodrigo Rodrigues**, criador do **Nexus** e destes projetos de código abe
 
 <p>
   <a href="#apoie-com-pix"><img src="assets/support/pix-pt-br.svg" width="190" height="44" alt="Apoiar com Pix"></a>
-  <a href="https://github.com/techrodrigo21-ux/mascarar-segredos/issues/new?title=Coment%C3%A1rio%3A%20este%20projeto%20me%20ajudou"><img src="assets/support/comment-pt-br.svg" width="210" height="44" alt="Deixar um comentário"></a>
+  <a href="https://github.com/Rdraim/mascarar-segredos/issues/new?title=Coment%C3%A1rio%3A%20este%20projeto%20me%20ajudou"><img src="assets/support/comment-pt-br.svg" width="210" height="44" alt="Deixar um comentário"></a>
 </p>
 
 ### Apoie com Pix
@@ -129,7 +129,7 @@ Você também pode apoiar compartilhando o projeto, relatando um problema, melho
 
 ### Seu comentário também faz diferença
 
-[Conte como o projeto te ajudou](https://github.com/techrodrigo21-ux/mascarar-segredos/issues/new?title=Coment%C3%A1rio%3A%20este%20projeto%20me%20ajudou). Vou gostar de saber o que você criou, o que aprendeu e o que poderia ficar mais claro para quem está começando.
+[Conte como o projeto te ajudou](https://github.com/Rdraim/mascarar-segredos/issues/new?title=Coment%C3%A1rio%3A%20este%20projeto%20me%20ajudou). Vou gostar de saber o que você criou, o que aprendeu e o que poderia ficar mais claro para quem está começando.
 
 O comentário é bem-vindo com ou sem doação. Preserve sua privacidade: não publique comprovantes, dados pessoais, credenciais ou informações de usuários nas Issues.
 

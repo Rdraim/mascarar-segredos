@@ -6,6 +6,10 @@
 
 # 1.2.0 — 2026-10-07
 
+## 1.2.1 — 2026-10-07
+
+Identidade Rdraim, apresentação gráfica, revisão de compatibilidade e guarda do histórico mais eficiente. API de runtime preservada.
+
 Credenciais em URLs, Basic e cabeçalhos completos; parâmetros seguros preservados e padrões imutáveis.
 
 # 1.1.0 — 2026-10-07
