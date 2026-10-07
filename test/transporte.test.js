@@ -15,6 +15,7 @@ test('cabeçalhos completos e Basic não deixam valores residuais', () => {
   assert.equal(mascararTexto('Cookie: session=synthetic; other=another\nSet-Cookie: session=synthetic; Path=/\nAuthorization: Basic c3ludGhldGlj\nX-Request-ID: demo'),
     'Cookie:***\nSet-Cookie:***\nAuthorization:***\nX-Request-ID: demo');
   assert.equal(mascararTexto('auth Basic c3ludGhldGlj'), 'auth Basic ***');
+  assert.equal(mascararTexto('request Cookie: session=synthetic; other=another'), 'request Cookie:***');
 });
 test('padrões exportados não podem ser removidos pelo consumidor', () => {
   assert.throws(() => CHAVES_SENSIVEIS.pop(), TypeError);

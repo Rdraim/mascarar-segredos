@@ -49,7 +49,7 @@ export function mascararTexto(texto) {
   s = s.replace(/\b([a-z][a-z0-9+.-]*:\/\/)[^\s/@]+@/gi, '$1***@');
   s = s.replace(/([?&])([A-Za-z_][A-Za-z_0-9-]*)=([^\s&#]*)/g, (m, sep, key) => chaveSensivel(key) ? `${sep}${key}=***` : m);
   // Cabeçalhos podem ter múltiplos valores, espaços e cookies separados por ;.
-  s = s.replace(/(^|\r?\n)([ \t]*(?:authorization|proxy-authorization|cookie|set-cookie)[ \t]*:)[^\r\n]*/gi, '$1$2 ***');
+  s = s.replace(/\b((?:authorization|proxy-authorization|cookie|set-cookie)[ \t]*:)[^\r\n]*/gi, '$1 ***');
   s = s.replace(/\bBasic\s+[A-Za-z0-9+/]+=*/gi, 'Basic ***');
   for (const re of PADROES_VALOR) s = s.replace(re, OCULTO);
   // número de cartão (13–19 dígitos, com ou sem separador) que passa no Luhn
