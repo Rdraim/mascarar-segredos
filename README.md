@@ -2,13 +2,13 @@
 
 [English (United States)](README.en-US.md) · [Apoio voluntário](SUPPORT.md)
 
-## Revisão 1.1.0
+## Segurança e compatibilidade
 
 Valores entre aspas com espaços, cookies, referências compartilhadas e proteção contra getters/protótipos.
 
 Mascara por chave sensível e alguns padrões conhecidos de valores. Inclui cookies e campos CPF/CNPJ. JSON válido é reserializado; Map/Set viram arrays, datas viram ISO, getters não são executados e ciclos viram `[circular]`. É heurístico: não anonimiza todos os dados pessoais e não detecta todo segredo solto. Prefira logs com lista explícita de campos permitidos. Não transforme uma entrada arbitrária enorme em log: aplique limites na aplicação. BigInt exige serialização específica.
 
-Baixe pelo GitHub; não é necessário instalar um pacote homônimo do npm. Para consumir em outro projeto, use uma revisão Git fixada (tag v1.1.0) ou copie o módulo e preserve a licença. Os exemplos abaixo usam importação local após o clone. Node.js 22 ou superior para os testes.
+Baixe pelo GitHub; não é necessário instalar um pacote homônimo do npm. Para consumir em outro projeto, use uma revisão Git fixada (tag v1.2.0) ou copie o módulo e preserve a licença. Os exemplos abaixo usam importação local após o clone. Node.js 22 ou superior para os testes.
 
 Redige **segredos** de strings e objetos **antes de logar**. Sem dependência.
 
@@ -53,7 +53,7 @@ const log = (nivel, msg, dados) => console[nivel](msg, mascararObjeto(dados));
 
 - **Por chave** (valor vira `***`): `senha`, `password`, `pwd`, `secret`, `token`,
   `authorization`, `api_key`, `access_token`, `client_secret`, `cartao`, `cvv`,
-  `private_key`, `credential`… (ajuste em `CHAVES_SENSIVEIS`).
+  `private_key`, `credential`… (`CHAVES_SENSIVEIS` é uma lista imutável).
 - **Por valor**: `Bearer …`, tokens do GitHub (`ghp_…`, `github_pat_…`), chaves
   `sk-…`, AWS `AKIA…`, tokens do Slack `xox…`, **JWT**, e número de **cartão**
   (13–19 dígitos que passam no Luhn).
@@ -63,6 +63,16 @@ const log = (nivel, msg, dados) => console[nivel](msg, mascararObjeto(dados));
 > o seu domínio.
 
 ## Testes
+
+Exemplo executável: `node examples/uso.mjs`. A serialização também neutraliza
+funções `toJSON` da entrada, evitando executar código durante a redação.
+
+Credenciais em URLs (`protocolo://usuario:senha@host`), autenticação Basic e
+cabeçalhos completos Authorization/Cookie/Set-Cookie também são mascarados.
+Parâmetros seguros após um segredo na URL continuam disponíveis no diagnóstico.
+Não é anonimização universal: valores pessoais em campos não reconhecidos podem
+permanecer. Sempre minimize os dados coletados e teste seus formatos de log.
+
 
 ```bash
 npm test
