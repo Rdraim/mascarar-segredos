@@ -42,7 +42,7 @@ export function mascararTexto(texto) {
   let s = String(texto ?? '');
   for (const re of PADROES_VALOR) s = s.replace(re, OCULTO);
   // número de cartão (13–19 dígitos, com ou sem separador) que passa no Luhn
-  s = s.replace(/\b(?:\d[ -]?){13,19}\b/g, (m) => { const d = digitos(m); return (d.length >= 13 && d.length <= 19 && luhnOk(d)) ? OCULTO : m; });
+  s = s.replace(/\b\d(?:[ -]?\d){12,18}\b/g, (m) => { const d = digitos(m); return (d.length >= 13 && d.length <= 19 && luhnOk(d)) ? OCULTO : m; });
   // atribuições "chave: valor" / "chave=valor" com chave sensível
   s = s.replace(/("?[A-Za-z_]+"?)\s*([:=])\s*("?)([^\s,;}"']+)\3/g, (m, chave, sep, asp, valor) => {
     const nome = chave.replace(/"/g, '').toLowerCase();
