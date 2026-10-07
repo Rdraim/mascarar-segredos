@@ -17,6 +17,7 @@ export const CHAVES_SENSIVEIS = [
   'secret', 'token', 'authorization',
   'apikey', 'api_key', 'access_token', 'refresh_token', 'client_secret',
   'cartao', 'cvv', 'cvc', 'private_key', 'credential',
+  'cookie', 'set-cookie', 'cpf', 'cnpj',
 ];
 
 /* Valores que parecem segredo, mesmo soltos no meio do texto. */
@@ -40,12 +41,17 @@ const luhnOk = (num) => {
 /** Mascara segredos SOLTOS num texto (Bearer, prefixos de token, JWT, cartão). */
 export function mascararTexto(texto) {
   let s = String(texto ?? '');
+  // JSON estruturado preserva corretamente valores com espaços/aspas escapadas.
+  if (/^\s*[\[{]/.test(s)) {
+    try { const obj = JSON.parse(s); if (obj && typeof obj === 'object') return JSON.stringify(mascararObjeto(obj)); } catch { /* texto livre */ }
+  }
   for (const re of PADROES_VALOR) s = s.replace(re, OCULTO);
   // número de cartão (13–19 dígitos, com ou sem separador) que passa no Luhn
   s = s.replace(/\b\d(?:[ -]?\d){12,18}\b/g, (m) => { const d = digitos(m); return (d.length >= 13 && d.length <= 19 && luhnOk(d)) ? OCULTO : m; });
   // atribuições "chave: valor" / "chave=valor" com chave sensível
-  s = s.replace(/("?[A-Za-z_]+"?)\s*([:=])\s*("?)([^\s,;}"']+)\3/g, (m, chave, sep, asp, valor) => {
+  s = s.replace(/("?[A-Za-z_][A-Za-z_0-9-]*"?)\s*([:=])\s*("(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|[^\s,;}"']+)/g, (m, chave, sep, valor) => {
     const nome = chave.replace(/"/g, '').toLowerCase();
+    const asp = /^["']/.test(valor) ? valor[0] : '';
     return CHAVES_SENSIVEIS.some((c) => nome.includes(c)) ? `${chave}${sep}${asp}${OCULTO}${asp}` : m;
   });
   return s;
@@ -58,13 +64,19 @@ export function mascararObjeto(obj, _visto = new WeakSet()) {
   if (obj == null || typeof obj !== 'object') return typeof obj === 'string' ? mascararTexto(obj) : obj;
   if (_visto.has(obj)) return '[circular]';
   _visto.add(obj);
-  if (Array.isArray(obj)) return obj.map((v) => mascararObjeto(v, _visto));
-  const saida = {};
-  for (const [k, v] of Object.entries(obj)) {
-    if (chaveSensivel(k)) saida[k] = OCULTO;
-    else saida[k] = mascararObjeto(v, _visto);
-  }
-  return saida;
+  try {
+    if (Array.isArray(obj)) return obj.map((v) => mascararObjeto(v, _visto));
+    if (obj instanceof Date) return obj.toISOString();
+    if (obj instanceof Map) return [...obj].map(([k, v]) => [mascararObjeto(k, _visto), chaveSensivel(k) ? OCULTO : mascararObjeto(v, _visto)]);
+    if (obj instanceof Set) return [...obj].map((v) => mascararObjeto(v, _visto));
+    const saida = {};
+    for (const [k, descritor] of Object.entries(Object.getOwnPropertyDescriptors(obj))) {
+      if (!descritor.enumerable) continue;
+      const v = chaveSensivel(k) ? OCULTO : 'value' in descritor ? mascararObjeto(descritor.value, _visto) : '[accessor]';
+      Object.defineProperty(saida, k, { value: v, enumerable: true, configurable: true, writable: true });
+    }
+    return saida;
+  } finally { _visto.delete(obj); }
 }
 
 /** Açúcar: devolve JSON com os segredos mascarados. */
