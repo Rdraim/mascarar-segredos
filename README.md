@@ -1,5 +1,15 @@
 # mascarar-segredos
 
+[English (United States)](README.en-US.md) · [Apoio voluntário](SUPPORT.md)
+
+## Revisão 1.1.0
+
+Valores entre aspas com espaços, cookies, referências compartilhadas e proteção contra getters/protótipos.
+
+Mascara por chave sensível e alguns padrões conhecidos de valores. Inclui cookies e campos CPF/CNPJ. JSON válido é reserializado; Map/Set viram arrays, datas viram ISO, getters não são executados e ciclos viram `[circular]`. É heurístico: não anonimiza todos os dados pessoais e não detecta todo segredo solto. Prefira logs com lista explícita de campos permitidos. Não transforme uma entrada arbitrária enorme em log: aplique limites na aplicação. BigInt exige serialização específica.
+
+Baixe pelo GitHub; não é necessário instalar um pacote homônimo do npm. Para consumir em outro projeto, use uma revisão Git fixada (tag v1.1.0) ou copie o módulo e preserve a licença. Os exemplos abaixo usam importação local após o clone. Node.js 22 ou superior para os testes.
+
 Redige **segredos** de strings e objetos **antes de logar**. Sem dependência.
 
 Log é o vazamento silencioso mais comum: um token no header, uma senha no corpo
@@ -11,13 +21,15 @@ de token de API, JWT, número de cartão válido por Luhn).
 ## Instalação
 
 ```bash
-npm install mascarar-segredos
+git clone https://github.com/techrodrigo21-ux/mascarar-segredos.git
+cd mascarar-segredos
+npm test
 ```
 
 ## Uso
 
 ```js
-import { mascararObjeto, mascararTexto, mascararJSON } from 'mascarar-segredos';
+import { mascararObjeto, mascararTexto, mascararJSON } from './src/index.js';
 
 // objeto (ex.: antes de logar o corpo/headers de uma requisição)
 mascararObjeto({ usuario: 'ana', senha: 'x', dados: { api_key: 'k' } });
@@ -59,3 +71,9 @@ npm test
 ## Licença
 
 MIT © Rodrigo Rodrigues
+
+## Manutenção e apoio
+
+Código independente inspirado em problemas resolvidos no Nexus, projeto de Rodrigo Rodrigues. Não inclui banco, configuração privada, logs, dados de usuários ou credenciais. Evolução coordenada significa revisar mudanças relacionadas no mesmo ciclo; não há cópia automática de arquivos privados.
+
+[Como contribuir](CONTRIBUTING.md) · [Segurança](SECURITY.md) · [Apoio voluntário](SUPPORT.md)
