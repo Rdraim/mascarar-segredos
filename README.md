@@ -87,3 +87,10 @@ MIT © Rodrigo Rodrigues
 Código independente inspirado em problemas resolvidos no Nexus, projeto de Rodrigo Rodrigues. Não inclui banco, configuração privada, logs, dados de usuários ou credenciais. Evolução coordenada significa revisar mudanças relacionadas no mesmo ciclo; não há cópia automática de arquivos privados.
 
 [Como contribuir](CONTRIBUTING.md) · [Segurança](SECURITY.md) · [Apoio voluntário](SUPPORT.md)
+
+
+## ☕ Apoie este trabalho
+
+Se este projeto te ajudou, considere me pagar um café. Qualquer valor é bem-vindo, e seu comentário também ajuda.
+
+[![Apoiar com Pix](assets/support/pix-pt-br.svg)](SUPPORT.md)
